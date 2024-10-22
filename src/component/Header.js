@@ -11,7 +11,7 @@ function Header({ grouping, setGrouping, sorting, setSorting }) {
       <div className="display-button" onClick={() => setIsOpen(!isOpen)}>
         <DisplayIcon />
         <span>Display</span>
-        <Down className={isOpen ? "rotated" : ""} />
+        <Down className={`${isOpen ? "rotated" : ""} carrot`} />
       </div>
 
       {isOpen && (
@@ -34,7 +34,10 @@ function Header({ grouping, setGrouping, sorting, setSorting }) {
             <span>Ordering</span>
             <select
               value={sorting}
-              onChange={(e) => setSorting(e.target.value)}
+              onChange={(e) => {
+                setSorting(e.target.value);
+                setIsOpen(false);
+              }}
             >
               <option value="priority">Priority</option>
               <option value="title">Title</option>

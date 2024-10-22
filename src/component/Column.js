@@ -3,7 +3,8 @@ import Cards from "./Cards";
 import "../styles/Column.css";
 import { ReactComponent as AddIcon } from "../assets/add.svg";
 import { ReactComponent as ThreeDotMenuIcon } from "../assets/3 dot menu.svg";
-import { getPriorityTitleIcon, getStatusIcon, getUserProfile } from "../utils/icons";
+import { getPriorityColouredIcon, getStatusIcon, getUserProfile } from "../utils/icons";
+import { getPriorityKey } from "../utils/dataUtils";
 
 function Column({ title, tickets, users, grouping }) {
   return (
@@ -12,7 +13,7 @@ function Column({ title, tickets, users, grouping }) {
         <div className="column-title">
           {grouping === "status" && getStatusIcon(title)}
           {grouping === "user" && getUserProfile(title, users.find(user => user.name === title)?.available)}
-          {grouping === "priority" && getPriorityTitleIcon(title)}
+          {grouping === "priority" && getPriorityColouredIcon(getPriorityKey(title))}
           <span>{title}</span>
           <span className="ticket-count">{tickets.length}</span>
         </div>

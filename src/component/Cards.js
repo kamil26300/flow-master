@@ -1,18 +1,30 @@
 import React from "react";
 import "../styles/Card.css";
 import { getPriorityIcon, getStatusIcon, getUserProfile } from "../utils/icons";
+import ToolTip from "./TootTip";
+import { priorityMap } from "../utils/dataUtils";
 
 function Cards({ ticket, user, grouping }) {
   return (
     <div className="card">
       <div className="card-header">
         <span className="ticket-id">{ticket.id}</span>
-        {grouping !== "user" && getUserProfile(user?.name, user?.available)}
+        {grouping !== "user" && (
+          <ToolTip
+            text={`${user.name}: ${
+              user.available ? "Available" : "Un-Available"
+            }`}
+          >
+            {getUserProfile(user.name, user.available)}
+          </ToolTip>
+        )}
       </div>
       <div className="card-title">
         {grouping !== "status" && (
           <span className="card-title-prefix">
-            {getStatusIcon(ticket.status)}
+            <ToolTip text={ticket.status}>
+              {getStatusIcon(ticket.status)}
+            </ToolTip>
           </span>
         )}
         <span>{ticket.title}</span>
@@ -20,7 +32,9 @@ function Cards({ ticket, user, grouping }) {
       <div className="card-footer">
         {grouping !== "priority" && (
           <div className="priority-indicator">
-            {getPriorityIcon(ticket.priority)}
+            <ToolTip text={priorityMap[ticket.priority]}>
+              {getPriorityIcon(ticket.priority)}
+            </ToolTip>
           </div>
         )}
         {ticket.tag.map((tag) => (

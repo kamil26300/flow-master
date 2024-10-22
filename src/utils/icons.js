@@ -27,19 +27,19 @@ export const getPriorityIcon = (priority) => {
   }
 };
 
-export const getPriorityTitleIcon = (title) => {
-  switch (title) {
-    case "Urgent":
-      return <UrgentPriorityColourIcon className="priority-icon" />;
-    case "High":
-      return <HighPriorityIcon className="priority-icon" />;
-    case "Medium":
-      return <MediumPriorityIcon className="priority-icon" />;
-    case "Low":
-      return <LowPriorityIcon className="priority-icon" />;
-    case "No Priority":
+export const getPriorityColouredIcon = (priority) => {
+  switch (priority) {
+    case 4:
+      return  <UrgentPriorityColourIcon className="priority-icon-coloured" />;
+    case 3:
+      return <HighPriorityIcon className="priority-icon-coloured" />;
+    case 2:
+      return <MediumPriorityIcon className="priority-icon-coloured" />;
+    case 1:
+      return <LowPriorityIcon className="priority-icon-coloured" />;
+    case 0:
     default:
-      return <NoPriorityIcon className="priority-icon" />;
+      return <NoPriorityIcon className="priority-icon-coloured" />;
   }
 };
 

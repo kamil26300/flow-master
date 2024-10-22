@@ -8,6 +8,10 @@
   z-index: 3;
 }
 
+.carrot {
+  transition: 100ms linear transform;
+}
+
 .rotated {
   transform: rotate(180deg);
 }
@@ -48,4 +52,8 @@
   padding: 4px 8px;
   border: 1px solid #e6e7eb;
   border-radius: 4px;
+}
+
+.rotated .dropdown-menu {
+  background-color: red;
 }

@@ -16,13 +16,7 @@ export const groupTickets = (tickets, users, grouping) => {
       }, {});
 
     case "priority":
-      const priorityNames = {
-        4: "Urgent",
-        3: "High",
-        2: "Medium",
-        1: "Low",
-        0: "No Priority",
-      };
+      const priorityNames = priorityMap
       return tickets.reduce((acc, ticket) => {
         const priorityName = priorityNames[ticket.priority];
         acc[priorityName] = [...(acc[priorityName] || []), ticket];
@@ -32,6 +26,19 @@ export const groupTickets = (tickets, users, grouping) => {
     default:
       return { All: tickets };
   }
+};
+
+export const priorityMap = {
+  4: "Urgent",
+  3: "High",
+  2: "Medium",
+  1: "Low",
+  0: "No Priority",
+};
+
+export const getPriorityKey = (value) => {
+  const key = Object.keys(priorityMap).find(key => priorityMap[key] === value);
+  return Number(key)
 };
 
 export const sortTickets = (tickets, sorting) => {
